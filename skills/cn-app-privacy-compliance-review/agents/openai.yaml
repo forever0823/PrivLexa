@@ -1,0 +1,4 @@
+interface:
+  display_name: "中国隐私合规审查"
+  short_description: "面向中国移动应用隐私政策的 14 类 41 点分层审查工作流"
+  default_prompt: "Use $cn-app-privacy-compliance-review 审计这份移动应用隐私政策在中国法域下的合规性，并按 14 类 41 点返回证据和整改建议。"

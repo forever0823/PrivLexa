@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDPR 合规审查"
+  short_description: "面向隐私政策的证据驱动 GDPR 准则级合规审查工作流"
+  default_prompt: "Use $gdpr-compliance-review 审计这份隐私政策是否符合 GDPR，并返回带证据和整改建议的准则级审查结果。"

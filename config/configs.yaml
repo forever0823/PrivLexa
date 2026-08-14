@@ -1,0 +1,53 @@
+qwen_client:
+  base_url: "https://api.deepseek.com"
+  model: "deepseek-v4-pro"
+  max_tokens: 16384
+  timeout_seconds: 400
+  max_retries: 1
+  retry_backoff_seconds: 1.5
+
+agents:
+  privacy_policy_generator:
+    name: "隐私政策生成专家"
+    description: "专门负责生成移动应用隐私政策的AI助手"
+    system_message: "你是一个专业的隐私政策生成专家，擅长为移动应用创建符合法规要求的隐私政策文档。"
+    human_input_mode: "NEVER"
+    max_consecutive_auto_reply: 3
+  compliance_checker:
+    name: "合规性检测专家"
+    description: "专门负责检测隐私政策内容合规性的AI助手"
+    system_message: "你是一个专业的隐私政策合规性检测专家，能够识别隐私政策中的合规问题并提供改进建议。"
+    human_input_mode: "NEVER"
+    max_consecutive_auto_reply: 3
+  readability_checker:
+    name: "可读性检测专家"
+    description: "专门负责检测隐私政策可读性的AI助手"
+    system_message: "你是一个专业的文档可读性检测专家，能够评估隐私政策的可读性并提供优化建议。"
+    human_input_mode: "NEVER"
+    max_consecutive_auto_reply: 3
+
+api:
+  host: "0.0.0.0"
+  port: 8001
+  reload: true
+  log_level: "info"
+
+system:
+  max_round: 10
+  timeout: 300
+  enable_logging: true
+  log_file: "logs/agent_system.log"
+
+retrieval:
+  graph_candidate_pool: 18
+  final_top_k: 8
+  rrf_k: 60
+  embedding_rerank_enabled: false
+  embedding_backend: "sentence-transformers"
+  embedding_model: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  embedding_base_url: ""
+  embedding_api_key: ""
+  embedding_batch_size: 16
+  embedding_min_candidates: 6
+  embedding_timeout_seconds: 30
+  embedding_cache_path: "output/normalized/embedding_cache.json"

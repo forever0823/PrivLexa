@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCPA 应用合规审查"
+  short_description: "面向加州应用与隐私政策的准则级 CCPA 合规审查工作流"
+  default_prompt: "Use $ccpa-app-privacy-compliance-review 审计这份应用隐私政策的加州 CCPA 合规性，并返回带证据和整改建议的准则级结论。"
