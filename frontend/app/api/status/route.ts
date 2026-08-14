@@ -81,7 +81,6 @@ export async function GET(req: NextRequest) {
       available_agents: [
         { name: "隐私政策生成专家", type: "privacy_policy_generator", status: "active" },
         { name: "合规性检测专家", type: "compliance_checker", status: "active" },
-        { name: "可读性优化专家", type: "readability_checker", status: "active" },
       ],
       timestamp: new Date().toISOString(),
     })

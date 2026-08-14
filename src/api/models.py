@@ -211,12 +211,6 @@ class ComplianceCheckRequest(BaseModel):
         return self
 
 
-class ReadabilityCheckRequest(BaseModel):
-    privacy_policy: str
-    target_audience: Optional[str] = None
-    check_dimensions: Optional[List[str]] = None
-
-
 class HealthResponse(BaseModel):
     status: str
     timestamp: str

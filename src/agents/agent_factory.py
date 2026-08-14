@@ -46,7 +46,6 @@ from .compliance_checker_builder_multi_jurisdiction import ComplianceCheckerBuil
 from .conflict_detector_builder import ConflictDetectorBuilder
 from .multi_jurisdiction_coordinator_builder import MultiJurisdictionCoordinatorBuilder
 from .privacy_policy_generator_builder import PrivacyPolicyGeneratorBuilder
-from .readability_checker_builder import ReadabilityCheckerBuilder
 
 
 AGENT_DESCRIPTIONS: Dict[str, str] = {
@@ -55,9 +54,6 @@ AGENT_DESCRIPTIONS: Dict[str, str] = {
     ),
     "compliance_checker": (
         "针对单一法域审查隐私政策，并输出证据、法规映射和整改建议。"
-    ),
-    "readability_checker": (
-        "评估隐私政策的可读性、清晰度、结构和用户理解成本。"
     ),
     "conflict_detector": (
         "结合规则推理与语义相似度检测条款硬冲突与软冲突。"
@@ -88,15 +84,6 @@ COMPLIANCE_FALLBACK_MESSAGE = "\n".join(
         "你是隐私政策合规审查专家。",
         "依据所选法域审查政策，并说明证据、差距、法律依据和整改措施。",
         "如提供确定性基线，应在其基础上深化分析，而不是忽略基线。",
-        "除非用户明确指定其他语言，全文使用简体中文。",
-    ]
-)
-
-READABILITY_FALLBACK_MESSAGE = "\n".join(
-    [
-        "你是隐私政策可读性审查专家。",
-        "评估文本清晰度、结构、可访问性和普通用户理解成本。",
-        "在不削弱法律准确性的前提下给出具体修改建议。",
         "除非用户明确指定其他语言，全文使用简体中文。",
     ]
 )
@@ -135,7 +122,6 @@ class AgentFactory:
         self.agent_builders = {
             "privacy_policy_generator": PrivacyPolicyGeneratorBuilder,
             "compliance_checker": ComplianceCheckerBuilder,
-            "readability_checker": ReadabilityCheckerBuilder,
             "conflict_detector": ConflictDetectorBuilder,
             "compliance_checker_multi": ComplianceCheckerBuilderMulti,
             "multi_jurisdiction_coordinator": MultiJurisdictionCoordinatorBuilder,
@@ -283,8 +269,6 @@ class AgentFactory:
                 response = await self._process_privacy_policy_request(agent, message)
             elif agent_type in {"compliance_checker", "compliance_checker_multi"}:
                 response = await self._process_compliance_check_request(agent, message)
-            elif agent_type == "readability_checker":
-                response = await self._process_readability_check_request(agent, message)
             elif agent_type == "conflict_detector":
                 response = await self._process_conflict_detection_request(agent, message)
             elif agent_type == "multi_jurisdiction_coordinator":
@@ -318,9 +302,6 @@ class AgentFactory:
         return await self._send_chat_request(agent, message)
 
     async def _process_compliance_check_request(self, agent, message: str) -> str:
-        return await self._send_chat_request(agent, message)
-
-    async def _process_readability_check_request(self, agent, message: str) -> str:
         return await self._send_chat_request(agent, message)
 
     async def _process_conflict_detection_request(self, agent, message: str) -> str:
@@ -650,7 +631,6 @@ class AgentFactory:
         fallback_map = {
             "privacy_policy_generator": GENERATOR_FALLBACK_MESSAGE,
             "compliance_checker": COMPLIANCE_FALLBACK_MESSAGE,
-            "readability_checker": READABILITY_FALLBACK_MESSAGE,
             "conflict_detector": CONFLICT_FALLBACK_MESSAGE,
             "compliance_checker_multi": MULTI_COMPLIANCE_FALLBACK_MESSAGE,
             "multi_jurisdiction_coordinator": COORDINATION_FALLBACK_MESSAGE,
@@ -681,7 +661,6 @@ class AgentFactory:
             "compliance_checker_multi": ["jurisdiction", "法域", "score", "评分", "summary", "总结"],
             "conflict_detector": ["conflict", "冲突", "severity", "严重", "remediation", "整改"],
             "multi_jurisdiction_coordinator": ["plan", "计划", "summary", "总结", "priority", "优先"],
-            "readability_checker": ["readability", "可读性", "clarity", "清晰", "recommendation", "建议"],
         }
         expected = keyword_map.get(agent_type, [])
         found = [keyword for keyword in expected if keyword.lower() in result.lower()]

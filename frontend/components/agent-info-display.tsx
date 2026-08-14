@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { Eye, FileText, Info, Shield } from "lucide-react"
+import { FileText, Info, Shield } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -50,14 +50,6 @@ const agentConfigs = {
     iconClassName: "bg-amber-50 text-amber-700 ring-1 ring-amber-100",
     badgeClassName: "border-amber-200 bg-amber-50 text-amber-700",
     capabilities: ["检测规则冲突与语义冲突", "识别重复承诺与边界不一致", "辅助整理高风险修订点"],
-  },
-  readability_checker: {
-    name: "可读性优化 Agent",
-    description: "关注文本清晰度和结构层级，适合把政策写得更易读、更易理解。",
-    icon: <Eye className="h-5 w-5" />,
-    iconClassName: "bg-violet-50 text-violet-700 ring-1 ring-violet-100",
-    badgeClassName: "border-violet-200 bg-violet-50 text-violet-700",
-    capabilities: ["标记长句和术语堆叠", "定位重点信息不突出的段落", "给出更直白的改写方向"],
   },
 } as const
 

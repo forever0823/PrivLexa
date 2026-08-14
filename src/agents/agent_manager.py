@@ -56,10 +56,6 @@ class AgentManager:
             keyword in source_text for keyword in ["\u5408\u89c4", "\u68c0\u67e5", "\u7b26\u5408\u6cd5\u89c4"]
         ):
             return "compliance_checker"
-        if any(keyword in normalized for keyword in ["readability", "clarity"]) or any(
-            keyword in source_text for keyword in ["\u53ef\u8bfb\u6027", "\u6613\u8bfb", "\u7406\u89e3"]
-        ):
-            return "readability_checker"
         return "privacy_policy_generator"
 
     async def process_request(

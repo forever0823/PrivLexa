@@ -50,7 +50,7 @@ app = FastAPI(
     title="PrivLexa — Privacy Policy Intelligence Platform",
     description=(
         "Multi-agent platform for privacy policy generation, conflict detection, "
-        "compliance review, and readability assessment."
+        "and compliance review."
     ),
     version="1.0.0",
     docs_url="/docs",

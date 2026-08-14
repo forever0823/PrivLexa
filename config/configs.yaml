@@ -19,13 +19,6 @@ agents:
     system_message: "你是一个专业的隐私政策合规性检测专家，能够识别隐私政策中的合规问题并提供改进建议。"
     human_input_mode: "NEVER"
     max_consecutive_auto_reply: 3
-  readability_checker:
-    name: "可读性检测专家"
-    description: "专门负责检测隐私政策可读性的AI助手"
-    system_message: "你是一个专业的文档可读性检测专家，能够评估隐私政策的可读性并提供优化建议。"
-    human_input_mode: "NEVER"
-    max_consecutive_auto_reply: 3
-
 api:
   host: "0.0.0.0"
   port: 8001
